@@ -1,4 +1,4 @@
-# INFORMACIÓN GENERAL
+# 01 - INFORMACIÓN GENERAL
 
 ## IEX
 
@@ -10,3 +10,7 @@ iex> i <lo que se quiera inspeccionar, por ejemplo> "abc" o :true o %{foo: "bar"
 
 **Compilación y ejecución**
 iex> c "fichero.exs"
+
+## RECURSOS
+
+- http://elixirplayground.com/
