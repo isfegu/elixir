@@ -102,3 +102,21 @@ iex>​ other = fun1.()
 ​
 ​iex>​ add_five.(7)
 ​12
+
+## La notación &
+Se pueden crear funciones anónimas mediante el uso del &, sobre todo para cuando estas se usan como
+parámetro de otras funciones.
+
+iex> add_one = &(&1 + 1)
+​
+Es lo mismo que:
+
+iex> add_one = fn (n) -> n + 1 end​
+
+Como parámetro de otra función:
+
+iex> Enum.map [1,2,3,4], &(&1 + 2)
+
+Se usa el & más un número para especificar qué parámetro (su posición) enviado a la variable entra en juego.
+
+iex> sum = &(&1 + &2)
