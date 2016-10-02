@@ -2,8 +2,10 @@
 
 fn <parametros> -> <cuerpo> end
 
+```elixir
 iex>​ sum = ​fn​ (a, b) -> a + b ​end​
 ​   #Function<12.17052888 in :erl_eval.expr/5>
+```
 
 Se llama a la función:
 
@@ -46,3 +48,57 @@ Esto se realiza gracias al ajuste de patrones.
 
 En el ejemplo, si los parámetros son {:ok, file} ejecutará el cuerpo, "​​Read data: ​​#{​IO.read(file, ​:line​)​}​​"​
 En el caso que el primer parámetro no sea :ok, ejecutará el cuerpo "​​Error: ​​#{​​:file​.format_error(error)​}​​"​
+
+## Funciones que retornan funciones
+fun1 = ​fn​ ->
+​          fn​ ->
+​            ​"​​Hello"​
+​          ​end​
+​       ​end​
+
+iex>​ fun1 = ​fn​ -> ​fn​ -> ​"​​Hello"​ ​end​ ​end​
+​#Function<12.17052888 in :erl_eval.expr/5>
+​
+​iex>​ fun1.()
+​#Function<12.17052888 in :erl_eval.expr/5>
+​
+​iex>​ fun1.().()
+​"Hello"
+
+O se puede:
+
+```elixir
+iex>​ other = fun1.()
+​#Function<12.17052888 in :erl_eval.expr/5>
+​
+​iex>​ other.()
+​"Hello"
+```
+
+## Funciones que recuerdan el entorno original
+
+​iex>​ greeter = ​fn​ name -> (​fn​ -> ​"​​Hello ​​#{​name​}​​"​ ​end​) ​end​
+​#Function<12.17052888 in :erl_eval.expr/5>
+​
+​iex>​ dave_greeter = greeter.(​"​​Dave"​)
+​#Function<12.17052888 in :erl_eval.expr/5>
+​
+​iex>​ dave_greeter.()
+​"Hello Dave"
+
+## Funciones parametrizadas
+
+​iex>​ add_n = ​fn​ n -> (​fn​ other -> n + other ​end​) ​end​
+​#Function<12.17052888 in :erl_eval.expr/5>
+​
+​iex>​ add_two = add_n.(2)
+​#Function<12.17052888 in :erl_eval.expr/5>
+​
+​iex>​ add_five = add_n.(5)
+​#Function<12.17052888 in :erl_eval.expr/5>
+​
+​iex>​ add_two.(3)
+​5
+​
+​iex>​ add_five.(7)
+​12
