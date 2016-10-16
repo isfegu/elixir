@@ -27,3 +27,21 @@ def greet(greeting, name), do: (
     IO.puts greeting
     IO.puts "¡Hola, #{name}!"
 )
+
+## Funciones y ajuste de patrones
+En las funciones anónimas el ajuste de patrones se hacía en los parámetros escribiendo un cuerpo de función
+adecuado al ajuste deseado:
+
+fizzbuzz = fn
+  (0, 0, _) -> IO.puts "FizzBuzz"
+  (0, _, _) -> IO.puts "Fizz"
+  (_, 0, _) -> IO.puts "Buzz"
+  (_, _, c) -> IO.puts c
+end
+
+En las funciones no anónimas, el ajuste se hace redifiniendo las funciones para el ajuste deseado:
+
+defmodule Factorial do
+    def of(0), do: 1
+    def of(n), do: n * of(n - 1)
+end
