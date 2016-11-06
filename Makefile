@@ -4,7 +4,7 @@ SOURCE = /home/israel/Projects/Elixir/src
 TARGET = /var/elixir/src
 
 iex:
-	docker run -it --rm elixir
+	docker run -it --rm $(IMAGE_NAME)
 
 shell:
 	docker run -it --rm --name $(CONTAINER_NAME) -v $(SOURCE):$(TARGET) -w $(TARGET) $(IMAGE_NAME) /bin/bash
