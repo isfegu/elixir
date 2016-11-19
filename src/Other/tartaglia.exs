@@ -5,8 +5,8 @@ defmodule Tartaglia do
     @doc """
         Retorna la lista de números según su posición en el triángulo de targaglia
     """
-    def get(1), do: [1]
-    def get(2), do: [1,1]
+    def get(0), do: [1]
+    def get(1), do: [1,1]
     def get(n) do
         l = get(n - 1)
         [1] ++ eval(l, []) ++ [1]
